@@ -17,13 +17,14 @@ class App extends Component {
   }
 
   deleteTodo(id) {
-    this.setState(prevState => {
-      todos : prevState.todos.filter((todo, index) => todo.index !== id)
-    })
+    const todos = this.state.todos.slice();
+    const todoToDelete = todos[id];
+
+    this.setState({
+      todos: todos.filter(todo => todo !== todoToDelete)
+    })   
+    
   }
-
-
-  
 
   handleChange(e) {
     this.setState({ newTodoDescription: e.target.value })
